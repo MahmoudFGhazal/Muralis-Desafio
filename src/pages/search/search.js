@@ -277,6 +277,20 @@ async function showConfirmation(event) {
         window.addEventListener("message", function(event) {
             iframe.style.display = 'none';
 
+            if(editTipo === "telefone"){
+                if (editValor.length > 11 || editValor.length < 9) {
+                    alert("Telefone Inválido.\nColoque somente números.");
+                    RecoverDetailsContact(id);
+                    return;
+                }
+            }else{
+                if (!editValor.includes("@")) {
+                    alert("E-mail Inválido.");
+                    RecoverDetailsContact(id);
+                    return;
+                }
+            }
+
             if (event.data === "confirmed") { 
                 const updatedContact = {
                     tipo: editTipo,
@@ -432,7 +446,7 @@ async function openDetails(element, event) {
                                         <option value="email" ${c.tipo === "email" ? "selected" : ""}>E-mail</option>
                                     </select>
                                     :
-                                    <input type="text" class="contact-value" value="${c.valor} maxlength="100" disabled id="valor-${c.id}">
+                                    <input type="text" class="contact-value" value="${c.valor}" maxlength="100" disabled id="valor-${c.id}">
                                     <span class="selectable" id="edit-button-contact-${c.id}">Editar</span> | 
                                     <span class="selectable" onclick="deleteContact(${c.id}, event)">Excluir</span>
                                 </p>

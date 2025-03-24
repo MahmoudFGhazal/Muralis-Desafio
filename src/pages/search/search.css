@@ -280,4 +280,10 @@ table {
 }
 .modal-content button:hover {
   opacity: 0.8;
+}
+
+.contact-observacao {
+  width: 300px;
+  height: 40px;
+  margin-left: 10px;
 }/*# sourceMappingURL=search.css.map */

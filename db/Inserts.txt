@@ -3,18 +3,25 @@ INSERT INTO Clientes (nome, cpf, data_nascimento, endereco) VALUES
 ('Maria Oliveira', '987.654.321-02', '1985-08-22', 'Av. B, 456 - Rio de Janeiro, RJ'),
 ('Carlos Souza', '159.753.486-03', '1992-11-15', 'Rua C, 789 - Belo Horizonte, MG'),
 ('Ana Lima', '258.369.147-04', '1995-02-05', 'Av. D, 321 - Porto Alegre, RS'),
-('Fernando Rocha', '369.258.147-05', '1980-07-30', 'Rua E, 654 - Curitiba, PR'),
+('Fernando Rocha', '369.258.147-05', '1980-07-30', ''),
 ('Juliana Mendes', '456.123.789-06', '1998-12-12', 'Av. F, 987 - Recife, PE'),
 ('Roberto Nunes', '741.852.963-07', '1975-04-18', 'Rua G, 258 - Salvador, BA'),
-('Camila Santos', '852.963.741-08', '2000-09-25', 'Av. H, 369 - Fortaleza, CE');
+('Camila Santos', '852.963.741-08', '2000-09-25', '');
 
 INSERT INTO Contatos (cliente_id, tipo, valor, observacao) VALUES
 (1, 'email', 'joao.silva@email.com', 'Email principal'),
-(2, 'telefone', '(21) 98765-4321', NULL),
+(1, 'telefone', '11912345678', 'Telefone celular'),
+(2, 'telefone', '21987654321', ''),
+(2, 'email', 'maria.oliveira@email.com', 'Email secundário'),
 (3, 'email', 'carlos.souza@email.com', 'Email corporativo'),
-(4, 'telefone', '(51) 91234-5678', 'WhatsApp'),
-(5, 'telefone', '(41) 99876-5432', NULL),
-(6, 'email', 'juliana.mendes@email.com', NULL),
-(7, 'telefone', '(71) 91122-3344', 'Residencial'),
+(3, 'telefone', '31998765432', 'Telefone de trabalho'),
+(4, 'telefone', '51912345678', 'WhatsApp'),
+(4, 'email', 'ana.lima@email.com', ''),
+(5, 'telefone', '41998765432', 'Telefone residencial'),
+(5, 'email', 'fernando.rocha@email.com', ''),
+(6, 'email', 'juliana.mendes@email.com', 'Email principal'),
+(6, 'telefone', '81922223344', 'Telefone celular'),
+(7, 'telefone', '71911223344', 'Residencial'),
+(7, 'email', 'roberto.nunes@email.com', 'Email de contato'),
 (8, 'email', 'camila.santos@email.com', 'Contato preferencial'),
-(2, 'email', 'oi@email.com', 'Contato preferencial');
+(8, 'telefone', '85999998888', '');

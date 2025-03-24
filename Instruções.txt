@@ -1,0 +1,6 @@
+1. Crie o Banco de Dados.
+2. Popule o Banco de Dados.
+3. Iniciar a Applicação.
+4. Inicie o index.html.
+
+Para instruções mais detalhadas olhe o README.md.

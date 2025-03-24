@@ -75,6 +75,7 @@ function showConfirmation(event) {
 
 //Controla os forms dependendo do tipo de contato
 document.getElementById('tipo').addEventListener('change', function() {
+    console.log("oi");
     const tipo = document.getElementById("tipo").value;
     const emailForm = document.getElementById("emailForm");
     const telefoneForm = document.getElementById("telefoneForm");
