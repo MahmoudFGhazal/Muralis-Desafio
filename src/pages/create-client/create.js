@@ -19,7 +19,6 @@ async function addCliente(event) {
         data_nascimento: dataNascimento,
         endereco: endereco
     };
-    console.log(JSON.stringify(cliente));
     window.location.href = "create.html"
     try {
         const response = await fetch("http://localhost:8080/cliente", {

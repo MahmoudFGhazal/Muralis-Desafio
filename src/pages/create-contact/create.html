@@ -25,10 +25,10 @@
     <form id="emailForm" action="#" method="POST" onsubmit="return showConfirmation(event)" style="display: none;">
         <div>
             <label for="email">E-mail*:</label>
-            <input type="email" id="email" name="email" placeholder="E-mail" required maxlength="100">
+            <input type="email" id="email" name="email" placeholder="E-mail" required pattern="^\d{0, 100}$" title="O limite de caracteres é 100.">
 
             <label for="observacaoEmail">Observação:</label>
-            <textarea id="observacao" name="observacao" placeholder="Observação" maxlength="255"></textarea>
+            <textarea id="observacao" name="observacao" placeholder="Observação" pattern="^\d{0, 255}$" title="O limite de caracteres é 255."></textarea>
         </div>
 
         <div class="button-group">
@@ -40,10 +40,10 @@
     <form id="telefoneForm" action="#" method="POST" onsubmit="return showConfirmation(event)" style="display: none;">
         <div>
             <label for="telefone">Telefone*:</label>
-            <input type="tel" id="telefone" name="telefone" placeholder="Telefone" required minlength="9" maxlength="13">
+            <input type="tel" id="telefone" name="telefone" placeholder="Telefone" required pattern="^\d{9,11}$" title="O telefone deve ter entre 9 e 11 dígitos.">
 
             <label for="observacaoTelefone">Observação:</label>
-            <textarea id="observacao" name="observacao" placeholder="Observação" maxlength="255"></textarea>
+            <textarea id="observacao" name="observacao" placeholder="Observação" pattern="^\d{0, 255}$" title="O limite de caracteres é 255."></textarea>
         </div>
         
         <div class="button-group">

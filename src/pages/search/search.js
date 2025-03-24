@@ -69,7 +69,6 @@ async function getCpf(id){
         
         if (response.ok) {
             const cpf = await response.text(); 
-            console.log('CPF:', cpf);
             return cpf;
         } else {
             console.error('Cliente não encontrado ou erro ao buscar CPF');
@@ -167,7 +166,7 @@ function showDeleteConfirmation(deleteCallback) {
 
 //Aparece o modal para confirmar a alteração de alguma informação do cliente
 async function showConfirmation(event) {
-    console.log(event);
+    event.stopPropagation();
     event.preventDefault();
     var iframe = document.getElementById('modalIframe');
     
@@ -210,6 +209,7 @@ async function showConfirmation(event) {
                         alert("Este CPF já está cadastrado.");
                         const element = document.querySelector(`[data-cpf="${curCPF}"]`);
                         RecoverDetails(element);
+                        iframe.style.display = 'none';
                         return;
                     }
                 }
@@ -244,14 +244,14 @@ async function showConfirmation(event) {
                     alert("Erro ao atualizar o cliente.");
                 });
             } else if (event.data === "cancelled") {
+                const element = document.querySelector(`[data-cpf="${curCPF}"]`);
+                RecoverDetails(element);
             }
             iframe.style.display = 'none';
         });
     }else if(buttonId.startsWith("edit-contato")){
         const form = event.target;
         const id = form.getAttribute("data-contact-id");
-
-        console.log();
 
         const editTipo = form.querySelector(`#tipo-${id}`).value;
         const editValor = form.querySelector(`#valor-${id}`).value;
@@ -313,6 +313,7 @@ async function showConfirmation(event) {
                     alert("Erro ao atualizar o contato.");
                 });
             } else if (event.data === "cancelled") {
+                RecoverDetailsContact(id);
                 iframe.style.display = 'none'; 
             }
         });
@@ -356,9 +357,7 @@ let curcontato;
 
 //Recebe o evento de digitar no search-bar
 document.getElementById('search-bar').addEventListener('input', () => {
-    console.log(document.getElementById('search-bar').value.toLowerCase())
     curclientes = filterClients();
-    console.log(curclientes);
     renderTable(curclientes);  
 });
 
@@ -409,18 +408,18 @@ async function openDetails(element, event) {
                 <form id="editClient" action="#" method="POST" onsubmit="showConfirmation(event)">
                     <div class="header">
                         <p><strong>Nome:</strong> 
-                            <input type="text" id="edit-name" value="${client.nome}" disabled maxlength="100">
+                            <input type="text" id="edit-name" value="${client.nome}" disabled pattern="^\d{0, 100}$" title="O limite de caracteres é 100.">
                         </p>
                         <p class="selectable" id="edit-button">Editar</p>
                     </div>
                     <p><strong>CPF:</strong> 
-                        <input type="text" id="edit-cpf" value="${client.cpf}" disabled maxlength="14">
+                        <input type="text" id="edit-cpf" value="${client.cpf}" disabled pattern="^\d{11}$" title="O CPF deve conter exatamente 11 dígitos.">
                     </p>
                     <p><strong>Data de Nascimento:</strong> 
                         <input type="date" id="edit-data-nascimento" value="${formattedDate}" disabled>
                     </p>
                     <p><strong>Endereço:</strong> 
-                        <input type="text" id="edit-address" value="${client.endereco}" disabled maxlength="255">
+                        <input type="text" id="edit-address" value="${client.endereco}" disabled pattern="^\d{0, 255}$" title="O limite de caracteres é 255.">
                     </p>
                     <div id="buttons" class="button-group" style="display: none;">
                         <button id="save-edit" type="submit">Salvar</button>
@@ -441,12 +440,12 @@ async function openDetails(element, event) {
                                         <option value="email" ${c.tipo === "email" ? "selected" : ""}>E-mail</option>
                                     </select>
                                     :
-                                    <input type="text" class="contact-value" value="${c.valor}" maxlength="100" disabled id="valor-${c.id}">
+                                    <input type="text" class="contact-value" value="${c.valor}" pattern="^\d{0, 100}$" title="O limite de caracteres é 100." disabled id="valor-${c.id}">
                                     <span class="selectable" id="edit-button-contact-${c.id}">Editar</span> | 
                                     <span class="selectable" onclick="deleteContact(${c.id}, event)">Excluir</span>
                                 </p>
                                 <p style="display: ${c.observacao && c.observacao.trim() !== "" ? "block" : "none"};" id="observacao-area-${c.id}">
-                                    <input type="text" class="contact-observacao" value="${c.observacao || ''}" disabled id="observacao-${c.id}" maxlength="255">
+                                    <input type="text" class="contact-observacao" value="${c.observacao || ''}" disabled id="observacao-${c.id}" pattern="^\d{0, 255}$" title="O limite de caracteres é 255.">
                                 </p>
                                 <div id="buttons-contact-${c.id}" class="button-group" style="display: none;">
                                     <button id="save-edit-contact-${c.id}" type="submit">Salvar</button>
@@ -582,7 +581,6 @@ function disableInputsContact(id) {
 
 
     if(form.querySelector(`#observacao-${id}`).value.trim() === "") form.querySelector(`#observacao-area-${id}`).style.display = "none";
-    console.log(form.querySelector(`#observacao-area-${id}`).style)
     form.querySelector(`#buttons-contact-${id}`).style.display = "none";
     
     restoreEditButtons();

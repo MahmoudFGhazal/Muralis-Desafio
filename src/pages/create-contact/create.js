@@ -24,10 +24,8 @@ async function enviarContato(tipo, valor, observacao, cliente_id) {
 
         const result = await response.json();
         alert("Contato enviado com sucesso!");
-        console.log("Resposta da API:", result);
     } catch (error) {
-        console.error("Erro:", error);
-        alert("Erro ao enviar contato.");
+
     }
 }
 
@@ -53,7 +51,6 @@ function showConfirmation(event) {
 
     const observacao = formData.get("observacao") || "";
 
-    console.log(tipo)
 
     //Mostra as informações do contato
     let formDetails = `<p><strong>Tipo:</strong> ${tipo}</p>
@@ -75,7 +72,7 @@ function showConfirmation(event) {
 
 //Controla os forms dependendo do tipo de contato
 document.getElementById('tipo').addEventListener('change', function() {
-    console.log("oi");
+
     const tipo = document.getElementById("tipo").value;
     const emailForm = document.getElementById("emailForm");
     const telefoneForm = document.getElementById("telefoneForm");
