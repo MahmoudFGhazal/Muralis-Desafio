@@ -81,30 +81,6 @@ async function getCpf(id){
     }
 }
 
-//Envia as alterações no cliente
-async function editCliente(updatedClientcliente){
-    fetch(`http://localhost:8080/cliente/${curclient}`, {
-        method: 'PUT',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(updatedClient)
-    })
-    .then(response => {
-        if (response.ok) {
-            alert("Cliente atualizado com sucesso.");
-            window.location.href = "search.html";
-        } else {
-            alert("Erro ao atualizar o cliente.");
-        }
-    })
-    .catch(error => {
-        console.error("Erro ao enviar a requisição de atualização", error);
-        alert("Erro ao atualizar o cliente.");
-    });
-
-}
-
 //Exclui o cliente pelo ID
 async function deleteClient(clientId, event) {
     event.stopPropagation();
@@ -247,7 +223,26 @@ async function showConfirmation(event) {
                     endereco: editAddress
                 };
 
-                await editCliente(updatedClient);
+                //Envia as alterações no cliente
+                fetch(`http://localhost:8080/cliente/${curclient}`, {
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(updatedClient)
+                })
+                .then(response => {
+                    if (response.ok) {
+                        alert("Cliente atualizado com sucesso.");
+                        window.location.href = "search.html";
+                    } else {
+                        alert("Erro ao atualizar o cliente.");
+                    }
+                })
+                .catch(error => {
+                    console.error("Erro ao enviar a requisição de atualização", error);
+                    alert("Erro ao atualizar o cliente.");
+                });
             } else if (event.data === "cancelled") {
             }
             iframe.style.display = 'none';

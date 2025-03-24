@@ -65,6 +65,7 @@ public class ClienteController {
 
     @PutMapping("/{id}")
     public ResponseEntity<Cliente> upadateClient(@PathVariable Integer id, @RequestBody Cliente cliente){
+        System.out.println(cliente);
         return clienteService.update(id, cliente)
                     .map(ResponseEntity::ok)
                     .orElse(ResponseEntity.notFound().build());
