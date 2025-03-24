@@ -1,0 +1,13 @@
+@import '../../styles/global.scss';
+@import '../../styles/components/form';
+@import '../../styles/components/title';
+@import '../confirmation/confirmation.scss';
+
+input[type="date"]::-webkit-datetime-edit {
+    opacity: var(--text-opacity, 0.3);
+}
+
+iframe{
+    z-index: 5;
+    border:none;
+}

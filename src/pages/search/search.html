@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="search.css">
+</head>
+<body>
+    <iframe id="modalIframe" src="../confirmation/confirmation.html" class="modal" style=" display: none;"></iframe>
+    <div class="container">
+        <p class="title">Clientes</p>
+        <input type="text" id="search-bar" placeholder="Pesquisar">
+    </div>   
+    <table>
+        <thead>
+            <tr>
+                <th id="sortable-name">Nome <span id="sort-icon">&#8595</span></th>
+                <th>CPF</th>
+                <th>Data de Nascimento</th>
+                <th>Endereço</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+
+    <a href="../create-client/create.html">   
+        <button class="circular-button">+</button>
+    </a>
+
+    <div id="deleteModal" class="modal">
+        <div class="modal-content">
+            <p>Tem certeza de que deseja excluir este item?</p>
+            <button id="confirmDelete">Sim</button>
+            <button id="cancelDelete">Cancelar</button>
+        </div>
+    </div>
+
+    <script src="search.js"></script>
+    <script src="../../scripts/services/formatCPF.js"></script>
+    <script src="../../scripts/global.js"></script>
+</body>
+</html>

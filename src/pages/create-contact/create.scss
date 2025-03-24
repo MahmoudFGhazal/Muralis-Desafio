@@ -1,0 +1,13 @@
+@import '../../styles/global.scss';
+@import '../../styles/components/form';
+@import '../../styles/components/title';
+@import '../confirmation/confirmation.scss';
+
+iframe{
+    z-index: 5;
+    border:none;
+}
+
+#observacao{
+    height: 200px;
+}
